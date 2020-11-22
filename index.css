@@ -1,0 +1,7 @@
+body {
+    position: relative;
+    left:0px;
+}
+body::-webkit-scrollbar {
+    display: none;
+}
