@@ -1,0 +1,22 @@
+{
+  "name": "wasabi",
+  "collaborators": [
+    "Elias Sjögreen",
+    "Filippo Rossi"
+  ],
+  "description": "A template repository for deno modules that want to use wasm",
+  "version": "0.1.3",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/denosaurs/wasabi"
+  },
+  "files": [
+    "wasabi_bg.wasm",
+    "wasabi.js",
+    "wasabi.d.ts"
+  ],
+  "module": "wasabi.js",
+  "types": "wasabi.d.ts",
+  "sideEffects": false
+}
