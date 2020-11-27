@@ -1,4 +1,4 @@
-let Socket = new WebSocket('wss://whistlewasm.herokuapp.com')//whistlewasm.fly.dev
+let Socket = new WebSocket('wss://wasmwhistle.herokuapp.com/')//whistlewasm.fly.dev//whistlewasm.herokuapp.com
 let editors = []
 
 require.config({
