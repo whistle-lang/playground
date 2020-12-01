@@ -1,22 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="main.css">
-    <title>whistle - playground</title>
+    <script src="main.js" type = "module"></script>
+    <title>Playground - Whistle</title>
 </head>
-
 <body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.13.0/beautify.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.21.2/min/vs/loader.min.js"></script>
-<script src="main.js"></script>
 <div id="grid-container">
-  <div id="editor"></div>
-  <div id="tokens"></div>
-  <div id="ast"></div>
+  <textarea id="editor" ></textarea>
+  <textarea id="tokens" readonly></textarea>
+  <textarea id="ast" readonly></textarea>
 </div>
 </body>
-
 </html>
