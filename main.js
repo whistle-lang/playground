@@ -5,9 +5,11 @@ import init, {
 
 
 
-
-document.querySelector('#editor').addEventListener('change', (event) => {
+async function run(code) {
     await init();
-    document.querySelector('#tokens').value = lex(event.target.value)
-    document.querySelector('#ast').value = parse(event.target.value)
+    document.querySelector('#tokens').value = lex(code)
+    document.querySelector('#ast').value = parse(code)
+}
+document.querySelector('#editor').addEventListener('change', (event) => {
+    run(event.target.value)
 })
