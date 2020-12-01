@@ -15,6 +15,7 @@ let editors = [
         lineNumbers: true,
         lineWrapping: true,
         readOnly: false,
+        scrollbarStyle: null,
         mode: 'whistle',
         theme:'yonce'
     }),
@@ -23,6 +24,7 @@ let editors = [
         lineNumbers: true,
         lineWrapping: true,
         readOnly: true,
+        scrollbarStyle: null,
         mode: 'whistle',
         theme:'yonce'
     }),
@@ -31,6 +33,7 @@ let editors = [
         lineNumbers: true,
         lineWrapping: true,
         readOnly: true,
+        scrollbarStyle: null,
         mode: 'whistle',
         theme:'yonce'
     })
