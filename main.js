@@ -3,9 +3,9 @@ import init, {
     parse
 } from './src/whistle.js';
 
-import CodeMirror from "https://cdn.jsdelivr.net/npm/codemirror@5.58.3/src/codemirror.js"
+import { CodeMirror } from "https://cdn.jsdelivr.net/npm/codemirror@5.58.3/src/codemirror.js"
 
-import "https://cdn.jsdelivr.net/gh/Ophyon/whistle-editor/mode/whistle/whistleinit.js"
+import "https://cdn.jsdelivr.net/gh/Ophyon/whistle-editor@master/mode/whistle/whistleinit.js"
 
 import "https://cdn.rawgit.com/beautify-web/js-beautify/v1.13.0/js/lib/beautify.js"
 
