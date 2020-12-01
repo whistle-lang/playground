@@ -9,7 +9,7 @@ body {
     height:100%;
     width:100%;
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     grid-template-rows: auto auto;
     grid-template-areas:
         "editor editor tokens tokens"
