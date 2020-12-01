@@ -27,3 +27,8 @@ body {
 #ast {
     grid-area: ast;
 }
+.CodeMirror {
+    border: 0px;
+    height: 100%;
+    width:100%;
+}

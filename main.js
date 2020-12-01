@@ -3,13 +3,40 @@ import init, {
     parse
 } from './src/whistle.js';
 
+import CodeMirror from "https://cdn.jsdelivr.net/npm/codemirror@5.58.3/src/codemirror.js"
+import "https://cdn.jsdelivr.net/gh/Ophyon/whistle-editor/mode/whistle/whistleinit.js"
+
+let editors = [
+
+    CodeMirror(document.querySelector("#editor"), {
+        lineNumbers: true,
+        lineWrapping: true,
+        mode: 'whistle',
+        theme:'yonce'
+    }),
+
+    CodeMirror(document.querySelector("#tokens"), {
+        lineNumbers: true,
+        lineWrapping: true,
+        mode: 'whistle',
+        theme:'yonce'
+    }),
+
+    CodeMirror(document.querySelector("#ast"), {
+        lineNumbers: true,
+        lineWrapping: true,
+        mode: 'whistle',
+        theme:'yonce'
+    })
+]
 
 
 async function run(code) {
     await init();
-    document.querySelector('#tokens').value = lex(code)
-    document.querySelector('#ast').value = parse(code)
+    editors[1].setValue(lex(code))
+    editors[2].setValue(parse(code))
 }
-document.querySelector('#editor').addEventListener('change', (event) => {
-    run(event.target.value)
-})
+
+editors[0].on('change', editor => {
+    run(editor.getValue())
+});
