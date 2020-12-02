@@ -5,7 +5,7 @@ import init, {
 
 import  CodeMirror  from "https://cdn.jsdelivr.net/npm/codemirror@5.58.3/src/codemirror.js"
 
-import "https://gitcdn.xyz/cdn/Ophyon/scripts/6de5d262f9671a69fa6c09dff02e0a44e50e20d8/whistle/codemirror/mode/ext/whistle.js"
+import "https://cdn.jsdelivr.net/gh/Ophyon/scripts/whistle/codemirror/mode/ext/whistle.js"
 
 import "https://cdn.rawgit.com/beautify-web/js-beautify/v1.13.0/js/lib/beautify.js"
 
