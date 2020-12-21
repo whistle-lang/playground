@@ -1,6 +1,7 @@
 import init, {
     lex,
-    parse
+    parse,
+    compile
 } from './src/whistle.js';
 
 import  CodeMirror  from "https://cdn.jsdelivr.net/npm/codemirror@5.58.3/src/codemirror.js"
@@ -36,6 +37,14 @@ let editors = [
         scrollbarStyle: null,
         mode: 'whistle',
         theme:'yonce'
+    }),
+    CodeMirror(document.querySelector("#wasm"), {
+        lineNumbers: true,
+        lineWrapping: true,
+        readOnly: true,
+        scrollbarStyle: null,
+        mode: 'whistle',
+        theme:'yonce'
     })
 ]
 
@@ -44,6 +53,7 @@ async function run(code) {
     await init();
     editors[1].setValue(js_beautify(lex(code)))
     editors[2].setValue(js_beautify(parse(code)))
+    editors[3].setValue(js_beautify(compile(code)))
 }
 
 editors[0].on('change', editor => {
