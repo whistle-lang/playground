@@ -2,22 +2,48 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/codemirror.min.css" />
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/yonce.min.css" rel="stylesheet" />
-	<link rel="stylesheet" href="main.css" />
-	<script src="main.js" type="module"></script>
-	<title>Playground - Whistle</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/codemirror.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/yonce.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
+    </script>
+
+    <link rel="stylesheet" href="main.css" />
+    <script src="main.js" type="module"></script>
+    <title>Playground - Whistle</title>
 </head>
 
 <body>
-	<div id="grid-container">
-		<div id="editor"></div>
-		<div id="tokens" readonly></div>
-        <div id="ast" readonly></div>
-        <div id="wasm" readonly></div>
-	</div>
+    <div class="container">
+        <ul class="nav justify-content-center">
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                    aria-expanded="false">Output</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                    <li><button class="dropdown-item" id="lexer">Tokens</button></li>
+                    <li><button class="dropdown-item" id="parser">Ast</button></li>
+                    <li><button class="dropdown-item disabled" id="compiler">Compiled</button></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                    aria-expanded="false">Examples</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                    <li><button class="dropdown-item" id="helloworld">Hello World</button></li>
+                    <li><button class="dropdown-item" id="add">Add</button></li>
+                </ul>
+            </li>
+        </ul>
+        <div id="grid-container">
+            <div id="editor"></div>
+            <div id="tokens" readonly></div>
+        </div>
+    </div>
 </body>
 
 </html>

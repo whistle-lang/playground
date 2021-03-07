@@ -10,6 +10,8 @@ import "https://cdn.jsdelivr.net/gh/Ophyon/scripts/whistle/codemirror/mode/ext/w
 
 import "https://cdn.rawgit.com/beautify-web/js-beautify/v1.13.0/js/lib/beautify.js"
 
+
+let mode = "lex"
 let editors = [
 
     CodeMirror(document.querySelector("#editor"), {
@@ -30,29 +32,37 @@ let editors = [
         theme:'yonce'
     }),
 
-    CodeMirror(document.querySelector("#ast"), {
-        lineNumbers: true,
-        lineWrapping: true,
-        readOnly: true,
-        scrollbarStyle: null,
-        mode: 'whistle',
-        theme:'yonce'
-    }),
-    CodeMirror(document.querySelector("#wasm"), {
-        lineNumbers: true,
-        lineWrapping: true,
-        readOnly: true,
-        scrollbarStyle: null,
-        mode: 'whistle',
-        theme:'yonce'
-    })
 ]
 
 
+document.getElementById("lexer").addEventListener("click", function() {
+  mode = "lex"
+  run(editors[0].getValue())
+});
+
+document.getElementById("parser").addEventListener("click", function() {
+  mode = "parse"
+  run(editors[0].getValue())
+});
+document.getElementById("helloworld").addEventListener("click", function() {
+  editors[0].setValue(js_beautify(`
+    fun print(txt:string):none {
+        #(js) console.log(txt)
+    }
+  `))
+});
+document.getElementById("add").addEventListener("click", function() {
+  editors[0].setValue(js_beautify(`
+    fun add(a:i32,b:i32):i32 {
+        return a+b
+    }
+  `))
+});
+
 async function run(code) {
     await init();
-    editors[1].setValue(js_beautify(lex(code)))
-    editors[2].setValue(js_beautify(parse(code)))
+    eval(`editors[1].setValue(js_beautify(${mode}(code)))`)
+    //editors[2].setValue(js_beautify(parse(code)))
     //editors[3].setValue(js_beautify(compile(code)))
 }
 
