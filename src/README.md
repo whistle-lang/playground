@@ -107,3 +107,20 @@ Pull request, issues and feedback are very welcome. Code style is formatted with
 ### Licence
 
 Copyright 2020, Denosaurs. All rights reserved. MIT license.
+
+
+
+### compile gitpod
+
+```
+curl -fsSL https://deno.land/x/install/install.sh | sh
+export DENO_INSTALL="/home/gitpod/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
+rustup component add rustfmt
+rustup component add clippy
+cargo install wasm-pack
+
+wasm-pack build --target web --release
+
+```
