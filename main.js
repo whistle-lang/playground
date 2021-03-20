@@ -4,7 +4,7 @@ import init, {
     compile
 } from './src/whistle.js';
 
-import  CodeMirror  from "https://cdn.jsdelivr.net/npm/codemirror@5.58.3/src/codemirror.js"
+import CodeMirror from "https://cdn.jsdelivr.net/npm/codemirror@5.58.3/src/codemirror.js"
 
 import "https://cdn.jsdelivr.net/gh/Ophyon/scripts/whistle/codemirror/mode/ext/whistle.js"
 
@@ -20,7 +20,7 @@ let editors = [
         readOnly: false,
         scrollbarStyle: null,
         mode: 'whistle',
-        theme:'yonce'
+        theme: 'yonce'
     }),
 
     CodeMirror(document.querySelector("#tokens"), {
@@ -29,37 +29,52 @@ let editors = [
         readOnly: true,
         scrollbarStyle: null,
         mode: 'whistle',
-        theme:'yonce'
+        theme: 'yonce'
     }),
 
 ]
 
 
-document.getElementById("lexer").addEventListener("click", function() {
-  mode = "lex"
-  run(editors[0].getValue())
+document.getElementById("lexer").addEventListener("click", function () {
+    mode = "lex"
+    run(editors[0].getValue())
 });
 
-document.getElementById("parser").addEventListener("click", function() {
-  mode = "parse"
-  run(editors[0].getValue())
+document.getElementById("parser").addEventListener("click", function () {
+    mode = "parse"
+    run(editors[0].getValue())
 });
 
-document.getElementById("compiler").addEventListener("click", function() {
-  mode = "compile"
-  run(editors[0].getValue())
+document.getElementById("compiler").addEventListener("click", function () {
+    mode = "compile"
+    run(editors[0].getValue())
+});
+document.getElementById("save-file").addEventListener("click", async function () {
+    mode = "compile"
+    await run(editors[0].getValue())
+    let link = document.createElement('a');
+    link.download = 'test.wasm';
+    let blob = new Blob([Uint8Array.from(editors[1].getValue())], {
+        type: 'text/plain'
+    });
+    link.href = URL.createObjectURL(blob);
+
+    link.click();
+
+    URL.revokeObjectURL(link.href);
+
 });
 
-document.getElementById("helloworld").addEventListener("click", function() {
-  editors[0].setValue(js_beautify(`
+document.getElementById("helloworld").addEventListener("click", function () {
+    editors[0].setValue(js_beautify(`
     fun print(txt:string):none {
         #(js) console.log(txt)
     }
   `))
 });
-document.getElementById("add").addEventListener("click", function() {
-  editors[0].setValue(js_beautify(`
-    fun add(a:i32,b:i32):i32 {
+document.getElementById("add").addEventListener("click", function () {
+    editors[0].setValue(js_beautify(`
+    export fun add(a:i32,b:i32):i32 {
         return a+b
     }
   `))
