@@ -1,0 +1,22 @@
+{
+  "name": "whistle",
+  "collaborators": [
+    "Elias Sjögreen",
+    "Filippo Rossi"
+  ],
+  "description": " whistle in the browser",
+  "version": "0.1.3",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/whistle-lang/whistle_web"
+  },
+  "files": [
+    "whistle_bg.wasm",
+    "whistle.js",
+    "whistle.d.ts"
+  ],
+  "module": "whistle.js",
+  "types": "whistle.d.ts",
+  "sideEffects": false
+}
