@@ -1,8 +1,8 @@
 import init, {
     lex,
-    parse/*,
-    compile*/
-} from './src/whistle.js';
+    parse,
+    compile
+} from './pkg/whistle.js';
 
 import  CodeMirror  from "https://cdn.jsdelivr.net/npm/codemirror@5.58.3/src/codemirror.js"
 
@@ -44,6 +44,12 @@ document.getElementById("parser").addEventListener("click", function() {
   mode = "parse"
   run(editors[0].getValue())
 });
+
+document.getElementById("compiler").addEventListener("click", function() {
+  mode = "compile"
+  run(editors[0].getValue())
+});
+
 document.getElementById("helloworld").addEventListener("click", function() {
   editors[0].setValue(js_beautify(`
     fun print(txt:string):none {
@@ -62,8 +68,6 @@ document.getElementById("add").addEventListener("click", function() {
 async function run(code) {
     await init();
     eval(`editors[1].setValue(js_beautify(${mode}(code)))`)
-    //editors[2].setValue(js_beautify(parse(code)))
-    //editors[3].setValue(js_beautify(compile(code)))
 }
 
 editors[0].on('change', editor => {
