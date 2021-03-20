@@ -2,7 +2,7 @@ import init, {
     lex,
     parse,
     compile
-} from './pkg/whistle.js';
+} from './src/whistle.js';
 
 import  CodeMirror  from "https://cdn.jsdelivr.net/npm/codemirror@5.58.3/src/codemirror.js"
 
