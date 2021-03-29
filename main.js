@@ -54,7 +54,10 @@ document.getElementById("save-file").addEventListener("click", async function ()
     await run(editors[0].getValue())
     let link = document.createElement('a');
     link.download = 'test.wasm';
-    let blob = new Blob([Uint8Array.from(editors[1].getValue())], {
+    let bits = editors[1].getValue()
+    bits = bits.slice(0, bits.lastIndexOf(",")) + bits.slice(bits.lastIndexOf(",")).replace(",", "");
+
+    let blob = new Blob([Uint8Array.from(JSON.parse(bits))], {
         type: 'text/plain'
     });
     link.href = URL.createObjectURL(blob);
