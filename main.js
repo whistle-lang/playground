@@ -95,13 +95,17 @@ document.getElementById("add").addEventListener("click", function () {
 
 async function run(code) {
     await init();
-    if (mode !== 'wasmtowat') {
-        eval(`editors[1].setValue(js_beautify(${mode}(code)))`)
-    } else {
-        await editors[1].setValue(js_beautify(compile(code)))
-        let bits = editors[1].getValue()
-        bits = bits.slice(0, bits.lastIndexOf(",")) + bits.slice(bits.lastIndexOf(",")).replace(",", "");
-        WasmToWat(Uint8Array.from(JSON.parse(bits))).then(hmm => editors[1].setValue(hmm))
+    try {
+        if (mode !== 'wasmtowat') {
+            eval(`editors[1].setValue(js_beautify(${mode}(code)))`)
+        } else {
+            await editors[1].setValue(js_beautify(compile(code)))
+            let bits = editors[1].getValue()
+            bits = bits.slice(0, bits.lastIndexOf(",")) + bits.slice(bits.lastIndexOf(",")).replace(",", "");
+            WasmToWat(Uint8Array.from(JSON.parse(bits))).then(hmm => editors[1].setValue(hmm))
+        }
+    } catch (e) {
+        editors[1].setValue('')
     }
 }
 
