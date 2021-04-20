@@ -10,8 +10,10 @@ import "https://cdn.jsdelivr.net/gh/Ophyon/scripts/whistle/codemirror/mode/ext/w
 
 import "https://cdn.rawgit.com/beautify-web/js-beautify/v1.13.0/js/lib/beautify.js"
 
+import { WasmToWat } from './src/wasmtowat.js';
 
-let mode = "lex"
+
+let mode = "wasmtowat"
 let editors = [
 
     CodeMirror(document.querySelector("#editor"), {
@@ -20,6 +22,9 @@ let editors = [
         readOnly: false,
         scrollbarStyle: null,
         mode: 'whistle',
+        value: `export fun add(a: i32, b: i32): i32 {
+    return a + b
+}`,
         theme: 'yonce'
     }),
 
@@ -34,6 +39,7 @@ let editors = [
 
 ]
 
+run(editors[0].getValue())
 
 document.getElementById("lexer").addEventListener("click", function () {
     mode = "lex"
@@ -47,6 +53,10 @@ document.getElementById("parser").addEventListener("click", function () {
 
 document.getElementById("compiler").addEventListener("click", function () {
     mode = "compile"
+    run(editors[0].getValue())
+});
+document.getElementById("wat").addEventListener("click", function () {
+    mode = "wasmtowat"
     run(editors[0].getValue())
 });
 document.getElementById("save-file").addEventListener("click", async function () {
@@ -85,7 +95,14 @@ document.getElementById("add").addEventListener("click", function () {
 
 async function run(code) {
     await init();
-    eval(`editors[1].setValue(js_beautify(${mode}(code)))`)
+    if (mode !== 'wasmtowat') {
+        eval(`editors[1].setValue(js_beautify(${mode}(code)))`)
+    } else {
+        await editors[1].setValue(js_beautify(compile(code)))
+        let bits = editors[1].getValue()
+        bits = bits.slice(0, bits.lastIndexOf(",")) + bits.slice(bits.lastIndexOf(",")).replace(",", "");
+        WasmToWat(Uint8Array.from(JSON.parse(bits))).then(hmm => editors[1].setValue(hmm))
+    }
 }
 
 editors[0].on('change', editor => {
